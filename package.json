@@ -24,12 +24,10 @@
     "webpack": "^5.75.0"
   },
   "jest": {
-    "globals": {
-      "ts-jest": {
-        "useESM": true
-      }
-    },
     "preset": "ts-jest/presets/default-esm"
+  },
+  "ts-jest": {
+    "useESM": true
   },
   "testMatch": [
     "tests/*.spec.ts"
