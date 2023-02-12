@@ -1,6 +1,10 @@
 import { createMessage } from "./modules/createMessage";
-import { E, Event, Payload, global, Calculation } from "./types/lineChatBot";
+import { E, Event, Payload } from "./types/lineChatBot";
 
+// プロパティが無いと言われるのを防ぐ程度の型定義
+export declare const global: {
+  [x: string]: any;
+};
 global.doPost = (e: E) => {
   try {
     const userProperties = PropertiesService.getScriptProperties();

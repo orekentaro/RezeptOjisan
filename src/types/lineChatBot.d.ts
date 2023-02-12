@@ -1,6 +1,6 @@
 export interface Message {
   type: string;
-  id?: sting;
+  id?: string;
   text: string;
 }
 export interface Event {
