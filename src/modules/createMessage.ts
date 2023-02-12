@@ -1,5 +1,5 @@
 import RezeptCalculation from "./rezeptCalculation";
-import { E, Event, Payload, global } from "../types/lineChatBot";
+import { Calculation } from "../types/lineChatBot";
 
 export const createMessage = (text: string) => {
   const textData = text.split(" ");
@@ -18,7 +18,7 @@ export const createMessage = (text: string) => {
     total3,
     contact3,
     percent3,
-  } = rezept.calculation();
+  } = rezept.calculation() as Calculation;
   let returnText = `① ${percent1} (総数:${total1}, CL:${contact1})\n`;
   returnText += `② ${percent2} (総数:${total2}, CL:${contact2})\n`;
   returnText += `③ ${percent3} (総数:${total3}, CL:${contact3})`;
