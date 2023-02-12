@@ -1,5 +1,5 @@
 import * as assert from "assert";
-import RezeptCalculation from "../src/modules/rezeptCalculation";
+import RezeptCalculation from "../../src/modules/rezeptCalculation";
 
 describe("レセプトの計算クラスの単体テスト", (): void => {
   test("初期値整数", (): void => {
@@ -80,30 +80,84 @@ describe("レセプトの計算クラスの単体テスト", (): void => {
 describe("レセプトの計算クラスの結合テスト", (): void => {
   test("計算せず", (): void => {
     const rezept = new RezeptCalculation(10000, 3985);
-    const { total, contact, percent } = rezept.calculation();
+    const {
+      total1,
+      contact1,
+      percent1,
+      total2,
+      contact2,
+      percent2,
+      total3,
+      contact3,
+      percent3,
+    } = rezept.calculation();
 
-    assert.equal(total, 10000);
-    assert.equal(contact, 3985);
-    assert.equal(percent, "39.85%");
+    assert.equal(total1, 9998);
+    assert.equal(contact1, 3983);
+    assert.equal(percent1, "39.84%");
+
+    assert.equal(total2, 9999);
+    assert.equal(contact2, 3984);
+    assert.equal(percent2, "39.84%");
+
+    assert.equal(total3, 10000);
+    assert.equal(contact3, 3985);
+    assert.equal(percent3, "39.85%");
   });
   test("加算", (): void => {
     const rezept = new RezeptCalculation(853, 337);
     assert.equal(rezept.preCheckPercentValForTop(), false);
     assert.equal(rezept.preCheckPercentValForBottom(), true);
-    const { total, contact, percent } = rezept.calculation();
+    const {
+      total1,
+      contact1,
+      percent1,
+      total2,
+      contact2,
+      percent2,
+      total3,
+      contact3,
+      percent3,
+    } = rezept.calculation();
 
-    assert.equal(total, 857);
-    assert.equal(contact, 341);
-    assert.equal(percent, "39.79%");
+    assert.equal(total1, 857);
+    assert.equal(contact1, 341);
+    assert.equal(percent1, "39.79%");
+
+    assert.equal(total2, 858);
+    assert.equal(contact2, 342);
+    assert.equal(percent2, "39.86%");
+
+    assert.equal(total3, 859);
+    assert.equal(contact3, 343);
+    assert.equal(percent3, "39.93%");
   });
   test("減算", (): void => {
     const rezept = new RezeptCalculation(853, 500);
     assert.equal(rezept.preCheckPercentValForTop(), true);
     assert.equal(rezept.preCheckPercentValForBottom(), false);
-    const { total, contact, percent } = rezept.calculation();
+    const {
+      total1,
+      contact1,
+      percent1,
+      total2,
+      contact2,
+      percent2,
+      total3,
+      contact3,
+      percent3,
+    } = rezept.calculation();
 
-    assert.equal(total, 587);
-    assert.equal(contact, 234);
-    assert.equal(percent, "39.86%");
+    assert.equal(total1, 585);
+    assert.equal(contact1, 232);
+    assert.equal(percent1, "39.66%");
+
+    assert.equal(total2, 586);
+    assert.equal(contact2, 233);
+    assert.equal(percent2, "39.76%");
+
+    assert.equal(total3, 587);
+    assert.equal(contact3, 234);
+    assert.equal(percent3, "39.86%");
   });
 });

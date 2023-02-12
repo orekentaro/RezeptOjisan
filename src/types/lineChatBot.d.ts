@@ -31,3 +31,15 @@ export interface Payload {
 export declare const global: {
   [x: string]: any;
 };
+
+export interface Calculation {
+  total1: number;
+  contact1: number;
+  percent1: string;
+  total2: number;
+  contact2: number;
+  percent2: string;
+  total3: number;
+  contact3: number;
+  percent3: string;
+}
