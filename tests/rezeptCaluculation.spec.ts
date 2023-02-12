@@ -24,16 +24,55 @@ describe("レセプトの計算クラスのテスト", (): void => {
     assert.equal(percentString, "0%");
   });
 
-  test("パーセント確認オーバー", (): void => {
+  test("減算パーセント確認オーバー", (): void => {
     const rezept = new RezeptCalculation(10000, 3986);
-    expect(rezept.checkPercentVal()).toBe(true);
+    expect(rezept.checkPercentValForTop()).toBe(true);
   });
-  test("パーセント確認イコール", (): void => {
+  test("減算パーセント確認イコール", (): void => {
     const rezept = new RezeptCalculation(10000, 3985);
-    expect(rezept.checkPercentVal()).toBe(true);
+    expect(rezept.checkPercentValForTop()).toBe(true);
   });
-  test("パーセント確認アンダー", (): void => {
+  test("減算パーセント確認アンダー", (): void => {
     const rezept = new RezeptCalculation(10000, 3984);
-    expect(rezept.checkPercentVal()).toBe(false);
+    expect(rezept.checkPercentValForTop()).toBe(false);
+  });
+
+  test("加算パーセント確認オーバー", (): void => {
+    const rezept = new RezeptCalculation(10000, 3986);
+    expect(rezept.checkPercentValForBottom()).toBe(false);
+  });
+  test("加算パーセント確認イコール", (): void => {
+    const rezept = new RezeptCalculation(10000, 3985);
+    expect(rezept.checkPercentValForBottom()).toBe(true);
+  });
+  test("加算パーセント確認アンダー", (): void => {
+    const rezept = new RezeptCalculation(10000, 3984);
+    expect(rezept.checkPercentValForBottom()).toBe(true);
+  });
+
+  test("pre減算パーセント確認オーバー", (): void => {
+    const rezept = new RezeptCalculation(10001, 3987);
+    expect(rezept.preCheckPercentValForTop()).toBe(true);
+  });
+  test("pre減算パーセント確認イコール", (): void => {
+    const rezept = new RezeptCalculation(10001, 3986);
+    expect(rezept.preCheckPercentValForTop()).toBe(true);
+  });
+  test("pre減算パーセント確認アンダー", (): void => {
+    const rezept = new RezeptCalculation(10001, 3985);
+    expect(rezept.preCheckPercentValForTop()).toBe(false);
+  });
+
+  test("pre加算パーセント確認オーバー", (): void => {
+    const rezept = new RezeptCalculation(9999, 3985);
+    expect(rezept.preCheckPercentValForBottom()).toBe(false);
+  });
+  test("pre加算パーセント確認イコール", (): void => {
+    const rezept = new RezeptCalculation(9999, 3984);
+    expect(rezept.preCheckPercentValForBottom()).toBe(true);
+  });
+  test("pre加算パーセント確認アンダー", (): void => {
+    const rezept = new RezeptCalculation(9999, 3983);
+    expect(rezept.preCheckPercentValForBottom()).toBe(true);
   });
 });

@@ -7,7 +7,7 @@ class RezeptCalculation {
   constructor(private total: number, private contact: number) {
     this.percent = this.division(this.total, this.contact);
     this.originalPercent = this.percent;
-    this.percentString = this.parsePercent(this.percent);
+    this.percentString = this.parsePercent();
   }
 
   division = (denominator: number, molecule: number): number => {
@@ -15,11 +15,26 @@ class RezeptCalculation {
     const num = (molecule / denominator) * 100;
     return Number(num.toFixed(constants.SIGNIFICANT_DIGIT));
   };
-  parsePercent = (percent: number): string => {
-    return `${percent}%`;
+  parsePercent = (): string => {
+    return `${this.percent}%`;
   };
-  checkPercentVal = (): boolean => {
-    return this.percent >= constants.TARGET_PERCENT && this.percent !== 0;
+  checkPercentValForTop = (): boolean => {
+    return this.percent >= constants.TARGET_PERCENT;
+  };
+  checkPercentValForBottom = (): boolean => {
+    return this.percent <= constants.TARGET_PERCENT;
+  };
+  preCheckPercentValForTop = (): boolean => {
+    return (
+      this.division(this.total - 1, this.contact - 1) >=
+      constants.TARGET_PERCENT
+    );
+  };
+  preCheckPercentValForBottom = (): boolean => {
+    return (
+      this.division(this.total + 1, this.contact + 1) <=
+      constants.TARGET_PERCENT
+    );
   };
 }
 
