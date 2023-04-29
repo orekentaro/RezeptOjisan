@@ -1,5 +1,6 @@
 import RezeptCalculation from "./rezeptCalculation";
-import { Calculation } from "../types/lineChatBot";
+
+import type { Calculation } from "../types/lineChatBot";
 
 export const createMessage = (text: string) => {
   const textData = text.split(" ");

@@ -1,5 +1,6 @@
 import { createMessage } from "./modules/createMessage";
-import { E, Event, Payload } from "./types/lineChatBot";
+
+import type { E, Event, Payload } from "./types/lineChatBot";
 
 // プロパティが無いと言われるのを防ぐ程度の型定義
 export declare const global: {
