@@ -34,7 +34,8 @@ global.doPost = (e: E) => {
     } as GoogleAppsScript.URL_Fetch.URLFetchRequestOptions;
 
     //LINE Messaging APIにリクエストし、ユーザーからの投稿に返答する
-    UrlFetchApp.fetch(userProperties.getProperty("LINE_URL"), options);
+    UrlFetchApp.fetch(userProperties.getProperty("LINE_URL") || "", options);
+    return;
   } catch (err) {
     return "半角数字で[総数 (半角スペース) CL数を入れてください。";
   }
