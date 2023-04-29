@@ -24,8 +24,7 @@ class RezeptCalculation {
     return Number(num.toFixed(constants.SIGNIFICANT_DIGIT));
   };
   parsePercent = (percent?: number): string => {
-    if (!percent) percent = this.percent;
-    return `${percent}%`;
+    return percent ? `${percent}%` : `${this.percent}%`;
   };
   checkPercentValForTop = (): boolean => {
     return this.percent >= constants.TARGET_PERCENT;
@@ -67,28 +66,27 @@ class RezeptCalculation {
         contact3: this.contact,
         percent3: this.parsePercent(),
       };
-    } else {
-      while (this.preCheckPercentValForBottom()) {
-        this.total += 1;
-        this.contact += 1;
-        this.percent = this.division(this.total, this.contact);
-      }
-      return {
-        total1: this.total,
-        contact1: this.contact,
-        percent1: this.parsePercent(),
-        total2: this.total + 1,
-        contact2: this.contact + 1,
-        percent2: this.parsePercent(
-          this.division(this.total + 1, this.contact + 1)
-        ),
-        total3: this.total + 2,
-        contact3: this.contact + 2,
-        percent3: this.parsePercent(
-          this.division(this.total + 2, this.contact + 2)
-        ),
-      };
     }
+    while (this.preCheckPercentValForBottom()) {
+      this.total += 1;
+      this.contact += 1;
+      this.percent = this.division(this.total, this.contact);
+    }
+    return {
+      total1: this.total,
+      contact1: this.contact,
+      percent1: this.parsePercent(),
+      total2: this.total + 1,
+      contact2: this.contact + 1,
+      percent2: this.parsePercent(
+        this.division(this.total + 1, this.contact + 1)
+      ),
+      total3: this.total + 2,
+      contact3: this.contact + 2,
+      percent3: this.parsePercent(
+        this.division(this.total + 2, this.contact + 2)
+      ),
+    };
   };
 }
 
