@@ -1,9 +1,9 @@
 {
   "scripts": {
-    "build": "webpack --progress --env loader=swc",
+    "build": "webpack --mode production --progress --env loader=swc",
     "push": "npm run build && clasp push",
     "build:esbuild": "esbuild source/index.ts --bundle --outfile=dist/main.ts",
-    "build:webpack": "webpack",
+    "build:webpack": "webpack --mode production",
     "test": "jest",
     "lint": "eslint src/",
     "lint:fix": "eslint src/ --fix"
